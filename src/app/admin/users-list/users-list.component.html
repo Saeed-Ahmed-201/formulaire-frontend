@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="row">
+        <h1 class="text-muted text-center">ALL  USERS</h1>
+        <div class="col-md-12">
+            <table width="100" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="th-sm">Name</th>
+                        <th class="th-sm">Email</th>
+                        <th class="th-sm">Contact</th>
+                        <th class="th-sm">Opertion</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="!recordsNotAvailable;else datanotfound;">
+                    <tr *ngFor="let user of users">
+                        <td>{{user.fullName }}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.contact}}</td>
+                        <td>
+                            <button (click)="viewFormulaire(user.id)"  *ngIf="user.filledFormulaire; else addRecord"  class="btn-danger btn-sm" >View</button>
+                            <ng-template #addRecord>
+                                <button (click)="addFormulaire(user.id)"  class="btn-danger btn-sm">Add Record</button>
+                            </ng-template>
+                            <button  class="btn-danger btn-sm" (click)="deleteUser(user.id)">Supprimer</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <ng-template #datanotfound>
+                    <tbody>
+                        <tr>
+                            <td colspan="12">{{users}}</td>
+                        </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container">
+    <div class="row">
+        <h1 class="text-muted text-center">ALL REGISTERED USERS</h1>
+        <div class="col-md-12">
+            <table width="100" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="th-sm">الإسم
+
+                        </th>
+                        <th class="th-sm">اللقب
+
+                        </th>
+                        <th class="th-sm">السن
+
+                        </th>
+                        <th class="th-sm">العنوان الشخـــــصي
+
+                        </th>
+                        <th class="th-sm"> 1رقم الهاتف
+                        </th>
+                        <th class="th-sm"> تقييم اللجنة مع تصنيف الحالة
+                        </th>
+
+                        <th class="th-sm">Opertion
+                        </th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="!recordsNotAvailable;else datanotfound;">
+                    <tr *ngFor="let item of items">
+                        <td>{{item.prenom }}</td>
+                        <td>{{item.nom}}</td>
+                        <td>{{item.datenais}}</td>
+                        <td> {{item.num}} {{item.cite}} {{item.province}}</td>
+                        <td>{{item.telephone1}}</td>
+                        <td>{{item.evaluationDuComite}}</td>
+                        <td>
+                            <button class="btn-danger btn-sm" (click)="deleteUser(item.id)">Supprimer</button>
+                            <button class="btn-success btn-sm" (click)="openUpdateModal(item)" data-toggle="modal" data-target="#exampleModalCenter2">Modifier</button>
+                            <button class="btn-success btn-sm btn-primary" (click)="openViewModal(item)" data-toggle="modal" data-target="#exampleModalCenter">View</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <ng-template #datanotfound>
+                    <tbody>
+                        <tr>
+                            <td colspan="12">{{items}}</td>
+                        </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+        </div>
+    </div>
+</div>
+<app-update-form [updateItem]="updateItem"></app-update-form>
+<app-view-user *ngIf="singleItemView" [singleItemView]="singleItemView"></app-view-user> -->

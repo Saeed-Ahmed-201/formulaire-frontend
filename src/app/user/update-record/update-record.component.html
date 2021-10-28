@@ -1,0 +1,224 @@
+<div class="container">
+    <div class="row">
+        <h4 align="right"> (اختيارية ) : صورة شمسية </h4>
+        <h6 align="right"><input type="file">الصور </h6>
+        <div class="text-center">
+            <h4>بلدية الدندان </h4>
+            <img width="150" height="150" src="assets/image/بلدية الدندان.png">
+            <h4> لجنة العمل الإجتماعي </h4> <br>
+        </div>
+        <form [formGroup]="updateForm" (submit)="onSubmit()">
+            <table align="center">
+                <tr>
+                    <td align="right">
+                        <label>
+                            التاريخ
+                        </label>
+                        <input type="date"   class="form-control" required formControlName="datenais">
+                        <label>بطاقة إرشادات عدد</label>
+                        <input type="number"  required class="form-control"    formControlName="numero_de_carte_d_instructions" min='1' max=''>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <label>الإسم</label>
+                        <input type="text"   formControlName="prenom" required class="form-control" >
+                        <label>اللقب</label>
+                        <input type="text"   required class="form-control"  formControlName="nom">
+                    </td>
+                    <td align="center"> <b> : الاســـــــم واللقب</b> </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <div class="age">
+                            <input type="date"   class="form-control" formControlName="datenais">
+
+                            <select  formControlName="age" size="1" required>
+                          <option *ngFor="let in of demo; let i = index" value="{{i}}">
+                              {{in}}
+                          </option>
+                      </select> : السن
+                        </div>
+                        <td align="center"> <b> :تـــــــــــــاريخ الولادة </b> </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <div class="demo">
+                            <div>
+                                <label>الولاية</label>
+                                <input  required  type="text" class="form-control" formControlName="province">
+                            </div>
+                            <div>
+                                <label for="">النهج</label>
+                                <input  type="text"  required class="form-control" formControlName="cite">
+                            </div>
+                            <div>
+                                <label for=""> عدد</label>
+                                <input  type="number"  required pattern="/^[0-9]+$/" class="form-control" formControlName="num">
+                            </div>
+                        </div>
+                    </td>
+                    <td align="center"> <b> :العنوان الشخـــــصي </b></td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <div class="demo">
+                            <div>
+                                <label>رقم 2</label>
+                                <input  type="tel"  class="form-control" required formControlName="telephone2" required="required">
+                            </div>
+                            <div>
+                                <label>رقم 1</label>
+                                <input  type="tel"  class="form-control" required formControlName="telephone1">
+
+                            </div>
+
+                        </div>
+                    </td>
+                    <td align="center"> <b> : رقم أو أرقـام الهاتف </b></td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <select required formControlName="etatCivil">
+                     <option  selected  >{{updateItem.etatCivil}}</option>
+                      <option  value="celibataire"> أعزب/ عزباء </option>
+                      <option value="marie(e)"> متزوج(ة) </option>
+                      <option value="divorce(e)"> مطلق(ة)</option>
+                      <option value="veuf(ve)"> أرمل(ة) </option>
+                  </select></td>
+                    <td align="center"> <b>: الحــــــــــــالة المدنية </b></td>
+                </tr>
+                <tr>
+                    <td align="right"> 
+                        <select size="1" required formControlName="etatDeSante">
+                            <option  selected >{{updateItem.etatDeSante}}</option>
+                      <option value="sain"> سليم </option>
+                      <option value="handicape"> معاق </option>
+                      <option value="maladie_chronique"> له مرض مزمن </option>
+                  </select>
+                    </td>
+                    <td align="center"> <b> : الحــــــــــالة الصحية </b></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p align="right">
+                            <label>عدد الأطفال دون سن الدراسة</label>
+                            <input   (keyup)="onChange()" required type="number" class="form-control" formControlName="nombre_d_enfant_d_age_prescolaire" size="5">
+                            <label for="">عدد الذين يزاولون الدراسة</label>
+                            <input   (keyup)="onChange()" required type="number" class="form-control" formControlName="nombre_d_enfants_scolarises" size="5">
+                        </p>
+                        <p align="right">
+                            <label>عدد العاطلين عن العمل</label>
+                            <input  (keyup)="onChange()" required type="number" class="form-control" formControlName="nombre_de_chomeurs" size="5">
+                            <label>عدد المعاقين أو الذين لديهم مرض مزمن</label>
+                            <input   (keyup)="onChange()" required type="number" class="form-control" formControlName="nombre_de_personnes_atteintes" size="5">
+                        </p>
+                        <label>
+                            المجموع
+                        </label>
+                        <input   formControlName="somme" required value="{{valeur_somme }}" size="5">
+                    </td>
+                    <td align="center"> <b>: عدد الاطفال في الكفالة </b></td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <select required size="1" formControlName="parents_ou_ascendants_en_parrainage">
+                        <option [value]="updateItem.parents_ou_ascendants_en_parrainage" >{{updateItem.parents_ou_ascendants_en_parrainage}}</option>
+                      <option value="la_mere_et_le pere"> الأب و الأم </option>
+                      <option value="le_pere"> الأب </option>
+                      <option value="la_mere"> الأم </option>
+                      <option value="le_grand_pere"> الجد </option>
+                      <option value="la_grande_mere"> الجدة </option>
+                      <option value="grands-parents"> الجد و الجدة </option>
+                      <option value="aucun_personne"> لا أحد </option>
+                  </select>
+                    </td>
+                    <td align="center"> <b>: الوالدين أو الاصول في الكفالة</b></td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <select required size="1" formControlName="revenuContinental">
+                            <option  selected [value]="updateItem.revenuContinental" > {{updateItem.revenuContinental}} </option>
+                      <option value="salaire_mensuel"> راتب شهري </option>
+                      <option value="CNSS"> جراية عمرية </option>
+                      <option value="bourse"> منحة </option>
+                      <option value="travailleur journalier "> عامل يومي </option>
+                      <option value="revenu continental n'existe pas"> مداخيل قارة غير موجودة </option>
+                  </select>
+
+                    </td>
+                    <td align="center"> <b> :المداخيل القــــــارة</b></td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <select #dropDown required size="1" formControlName="couvertureSociale">
+                            <option [value]="updateItem.couvertureSociale"></option>
+                      <option value="familles_beneficiant_des_bourses_permanentes_du_Programme_National_pour_les_Familles_Demunies"> الأسر المنتفعة بالمنح القارة للبرنامج الوطني لإعانة العائلات المعوزة
+                      </option>
+                      <option value="familles_qui_beneficient_de_cartes_de_soins_gratuites_sans_beneficier_de_bourses_permanentes"> الأسر المنتفعة ببطاقات العلاج المجاني دون التمتع بالمنح القارة </option>
+                     <option value="familles_beneficiant_de_cartes_de_traitement_à_tarif_reduit"> الأسر المنتفعة ببطاقات العلاج بالتعريفة المنخفضة </option>
+                      <option value="familles_sans_couverture_maladie"> الأسر التي لا تتمتع بأي تغطية صحية </option>
+                      <option value="boursiers_et_faibles_prestations_de_retraite"> أصحاب المنح و جرايات التقاعد الضعيفة</option>
+                      <option value="pas_de_couverture_sociale"> لا وجود لتغطية إجتماعية </option>
+                  </select>
+
+                    </td>
+                    <td align="center"><b>: التغطية االجتماعية </b></td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <select formControlName="exploitationHabitation" #selected required (change)="selectMe(selected.value)">
+                        <option [value]="updateItem.exploitationHabitation">{{updateItem.exploitationHabitation}}</option>
+                       <option value="entrepriseIndividuelle">ملكية فردية </option>
+                       <option value="copropriétaire">ملك مشترك</option>
+                       <option value="louer">كراء</option>
+                       <option value="gratuite">على وجه الفضل</option>
+                       <option value="autreExploitation">على وجه الاستغلال</option>
+                   </select>
+                        <input type="text"   formControlName="" *ngIf="show">
+                    </td>
+                    <td align="center"><b>: وجه إستغلال المسكن </b></td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input  type="checkbox"    formControlName="frais_de_soin"> مصاريف علاج
+                        <input  type="checkbox"  formControlName="frais_d_etudes"> مصاريف دراسة
+                        <input  type="checkbox"  formControlName="paiement_de_la_consommation_d_eau"> خلاص ماء
+                        <input  type="checkbox"  formControlName="paiement_de_la_consommation_d_electricite"> كهرباء
+                        <input  type="checkbox"  formControlName="payer_les_frais_de_loyer"> معلوم كراء
+                    </td>
+                    <td align="center"><b>:النفقات القارة (غير التموين)</b></td>
+                </tr>
+                <tr>
+                    <div align="right" class="evaluation">
+                        <p>
+                            <b> :تقييم اللجنة مع تصنيف الحالة </b>
+                        </p>
+                        <!-- <input required formControlName="optionalValue" type="text" value="تصنيف آخر تقرره اللجنة" *ngIf="show2"> -->
+                        <select style="display:inline;" formControlName="evaluationDuComite" (change)="selectOne(values.value)" #values class="eval" size="1" name="1">
+                      <option value="priorite_absolue_et_suivi_continu"> ذات أولوية مطلقة و متابعة مستمرة </option>
+                      <option value="a_la_priorite"> ذات أولوية </option>
+                      <option value="intervention_sure_dans_le_domaine_de_la_sante"> تدخل متأكد في مجال الصحي </option>
+                      <option value="intervention_sure_dans_le_domaine_de_la_finance"> تدخل متأكد في مجال المالي </option>
+                      <option value="intervention_sure_dans_le_domaine_de_l_administration"> تدخل متأكد في مجال الإداري </option>
+                      <option value="aide_limitee_aux_occasions_religieuses_et_sociales"> الإقتصار على المساعدات في المناسبات الدينية و الإجتماعية </option>
+                      <option value="un_autre_classement_decide_par_le_comite"> تصنيف آخر تقرره اللجنة </option>
+                  </select>
+                        <input type="text"   formControlName="optionalValue2" *ngIf="show2">
+                    </div>
+                </tr>
+                <tr >
+                    <td>
+                        <input class="btn btn-block btn-success m-4" type="submit" value="تسجيل">
+                    </td>
+                    <td>
+                        <button class="btn btn-block btn-danger m-4" (click)="goBack()">Back</button>
+                    </td>
+                </tr>
+            </table>
+
+
+        </form>
+    </div>
+</div>

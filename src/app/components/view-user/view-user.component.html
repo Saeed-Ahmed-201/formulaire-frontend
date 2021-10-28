@@ -1,0 +1,252 @@
+<div class="container mt-5">
+    <div class="row bg-light">
+        <div class="col-md-12">
+            <div class="p-3">
+                <h6>
+                    {{singleItemView.prenom | uppercase}} {{singleItemView.nom | uppercase}}
+                </h6>
+                <p style="font-size: 12px;">{{singleItemView.nom}} {{singleItemView.cite | uppercase}}, {{singleItemView.province | uppercase}}</p>
+            </div>
+        </div>
+        <div class="col-md-12 p-3">
+            <h6 class="text-primary">DÉTAILS PERSONNELS</h6>
+            <div class="container ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Telephone 1 - {{singleItemView.telephone1}}</span>
+                    </div>
+                    <div class="col-md-12">
+                        <span>Telephone 2  - {{singleItemView.telephone2}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Age - {{singleItemView.age}}</span>
+                    </div>
+                    <div class="col-md-12">
+                        <span>Date de naissance  - {{singleItemView.datenais}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 p-3">
+            <h6 class="text-primary">DÉTAILS DES MEMBRES DE LA FAMILLE</h6>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span>Nombre d'enfant d'âge préscolaire - {{singleItemView.nombre_d_enfant_d_age_prescolaire}}</span>
+                        </div>
+                        <div class="col-md-12">
+                            <span>Le nombre d'enfants scolarisés - {{singleItemView.nombre_d_enfants_scolarises}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span>Nombre de chômeurs - {{singleItemView.nombre_de_chomeurs}}</span>
+                        </div>
+                        <div class="col-md-12">
+                            <span>Le nombre de personnes handicapées ou atteintes d'une maladie chronique  - {{singleItemView.nombre_de_personnes_atteintes}}</span>
+                        </div>
+                        <div class="col-md-12">
+                            <span>Somme  - {{singleItemView.somme}}</span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-12 p-3">
+            <h6 class="text-primary">EXPENSE INFORMATION DÉTAILS</h6>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="checkbox" disabled [value]="singleItemView.frais_de_soin" [checked]="singleItemView.frais_de_soin">
+                        <span>Frais de soin</span>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="checkbox" disabled [value]="singleItemView.frais_d_etudes" [checked]="singleItemView.frais_d_etudes">
+                        <span>Frais d'études</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="checkbox" disabled [value]="singleItemView.paiement_de_la_consommation_d_eau" [checked]="singleItemView.paiement_de_la_consommation_d_eau">
+                        <span>Paiement de la consommation d'eau </span>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="checkbox" disabled [value]="singleItemView.paiement_de_la_consommation_d_electricite" [checked]="singleItemView.paiement_de_la_consommation_d_electricite">
+                        <span>Paiement de la consommation d'électricité </span>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="checkbox" disabled [value]="singleItemView.payer_les_frais_de_loyer" [checked]="singleItemView.payer_les_frais_de_loyer">
+                        <span>Payer les frais de loyer </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mt-4 p-3">
+            <h6 class="text-primary">ETAT CIVIL</h6>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>ÉTAT CIVIL - {{singleItemView.etatCivil}}</span>
+                    </div>
+                    <div class="col-md-12">
+                        <span>ÉTAT DE SANTÉ - {{singleItemView.etatDeSante}}</span>
+                    </div>
+                    <div class="col-md-12">
+                        <span>PARENTS OU ASCENDANTS EN PARRAINAGE - {{singleItemView.parents_ou_ascendants_en_parrainage}}</span>
+                    </div>
+                    <div class="col-md-12">
+                        <span>REVENU CONTINENTAL - {{singleItemView.revenuContinental}}</span>
+                    </div>
+                    <div class="col-md-12">
+                        <span>COUVERTURE SOCIALE - {{singleItemView.couvertureSociale}}</span>
+                    </div>
+                    <div class="col-md-12">
+                        <span>EXPLOITATION HABITATION - {{singleItemView.exploitationHabitation}}</span>
+                    </div>
+                    <div class="col-md-12">
+                        <span>ÉVALUATION DU COMITÉ - {{singleItemView.evaluationDuComite}}</span>
+                    </div>
+                    <div *ngIf="singleItemView.optionalValue" class="col-md-4">
+                        <label> EXPLOITATION HABITATION OPTIONAL </label>
+                        <p>{{singleItemView.optionalValue}}</p>
+                    </div>
+
+                    <div *ngIf="singleItemView.optionalValue2" class="col-md-4">
+                        <label> ÉVALUATION DU COMITÉ OPTIONAL </label>
+                        <p>{{singleItemView.optionalValue2}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="modal-footer">
+            <button type="button" (click)="deleteRecord(singleItemView.id)"  class="btn btn-danger">DELETE</button>
+            <button type="button" (click)="updateRecord(singleItemView.id)"  class="btn btn-danger">UPDATE</button>
+            <button type="button" printSectionId="print" ngxPrint class="btn btn-success">Print</button>
+            <button type="button" class="btn btn-secondary" (click)="goBack()" data-dismiss="modal">Back</button>
+        </div>
+    </div>
+</div>
+ <div style="display: none;" id="print">
+                <div>
+                    <h1> {{singleItemView.prenom | uppercase}} {{singleItemView.nom | uppercase}}</h1>
+                    <p style="font-size: 12px;">{{singleItemView.num}} {{singleItemView.cite | uppercase}}, {{singleItemView.province | uppercase}}</p>
+                </div>
+                <h6 class="text-primary">DÉTAILS PERSONNELS</h6>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>Telephone 1 - {{singleItemView.telephone1}}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span>Telephone 2  - {{singleItemView.telephone2}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>Age - {{singleItemView.age}}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span>Date de naissance  - {{singleItemView.datenais}}</span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-primary">DÉTAILS DES MEMBRES DE LA FAMILLE</h6>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>Nombre d'enfant d'âge préscolaire - {{singleItemView.nombre_d_enfant_d_age_prescolaire}}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span>Le nombre d'enfants scolarisés - {{singleItemView.nombre_d_enfants_scolarises}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span>Nombre de chômeurs - {{singleItemView.nombre_de_chomeurs}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span>Le nombre de personnes handicapées ou atteintes d'une maladie chronique  - {{singleItemView.nombre_de_personnes_atteintes}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span>Somme  - {{singleItemView.somme}}</span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-primary">EXPENSE INFORMATION DÉTAILS</h6>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>Frais de soin</span>
+                            <input type="checkbox" disabled  [checked]="singleItemView.frais_de_soin == 'true'">
+                        </div>
+                        <div class="col-md-6">
+                            <span>Frais d'études</span>
+                            <input type="checkbox"   [checked]="singleItemView.frais_d_etudes == 'true'">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span>Paiement de la consommation d'eau </span>
+                            <input type="checkbox" disabled  [checked]="singleItemView.paiement_de_la_consommation_d_eau == 'true'">
+                        </div>
+                        <div class="col-md-4">
+                            <span>Paiement de la consommation d'électricité</span>
+                            <input type="checkbox" disabled  [checked]="singleItemView.paiement_de_la_consommation_d_electricite == 'true'">
+                        </div>
+                        <div class="col-md-4">
+                            <span>Payer les frais de loyer </span>
+                            <input type="checkbox" disabled [checked]="singleItemView.payer_les_frais_de_loyer == 'true'">
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <h6 class="text-primary">ETAT CIVIL</h6>
+                            <div class="col-md-4">
+                                <label>ÉTAT CIVIL</label>
+                                <p>{{singleItemView.etatCivil}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <label>ÉTAT DE SANTÉ</label>
+                                <p>{{singleItemView.etatDeSante}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <label>PARENTS OU ASCENDANTS EN PARRAINAGE</label>
+                                <p>{{singleItemView.parents_ou_ascendants_en_parrainage}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <label> REVENU CONTINENTAL </label>
+                                <p>{{singleItemView.revenuContinental}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <label> COUVERTURE SOCIALE </label>
+                                <p>{{singleItemView.couvertureSociale}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <label> EXPLOITATION HABITATION  </label>
+                                <p>{{singleItemView.exploitationHabitation}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <label> ÉVALUATION DU COMITÉ </label>
+                                <p>{{singleItemView.evaluationDuComite}}</p>
+                            </div>
+                            <div *ngIf="singleItemView.optionalValue" class="col-md-4">
+                                <label> EXPLOITATION HABITATION OPTIONAL </label>
+                                <p>{{singleItemView.optionalValue}}</p>
+                            </div>
+
+                            <div *ngIf="singleItemView.optionalValue2" class="col-md-4">
+                                <label> ÉVALUATION DU COMITÉ OPTIONAL </label>
+                                <p>{{singleItemView.optionalValue2}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="button" printSectionId="print" ngxPrint class="btn btn-success">Imprimer</button>
+            </div>
+        </div>
+   

@@ -1,0 +1,489 @@
+
+<div style="width:80%; margin-left: auto;margin-right: auto;padding:50px;">
+  <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th class="th-sm">الإسم
+
+        </th>
+        <th class="th-sm">اللقب
+
+        </th>
+        <th class="th-sm">السن
+
+        </th>
+        <th class="th-sm">العنوان الشخـــــصي
+
+        </th>
+        <th class="th-sm"> 1رقم الهاتف
+        </th>
+        <th class="th-sm"> تقييم اللجنة مع تصنيف الحالة
+        </th>
+
+        <th class="th-sm">Opertion
+        </th>
+      </tr>
+    </thead>
+    <tbody *ngIf=" items.length else noRecords">
+      <tr *ngFor="let item of items">
+        <td>{{item.prenom }}</td>
+        <td>{{item.nom}}</td>
+        <td>{{item.datenais}}</td>
+        <td> {{item.num}} {{item.cite}} {{item.province}}</td>
+        <td>{{item.telephone1}}</td>
+        <td>{{item.evaluationDuComite}}</td>
+        <td>
+          <!-- <button class="btn-danger btn-sm" (click)="deleteRecord(item.id)">Supprimer</button> -->
+          <button class="btn-success btn-sm" (click)="openModal(item)" data-toggle="modal"
+            data-target="#exampleModal">Modifier</button>
+
+            <button class="btn-success btn-sm btn-primary" (click)="openModal2(item)" data-toggle="modal"
+            data-target="#exampleModal2">View</button>
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+  <ng-template #noRecords>
+    <div style="text-align: center;">
+      <p>0 enregistrement disponible</p>
+    </div>
+  </ng-template>
+</div>
+<div  *ngIf="singleItem"   class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> 
+          <div>
+            {{singleItem.prenom | uppercase}} {{singleItem.nom | uppercase}}
+          </div>
+          <p style="font-size: 12px;">{{singleItem.num}} {{singleItem.cite | uppercase}}, {{singleItem.province | uppercase}}</p>
+        </h5>
+        <button type="button" class="fermer" data-dismiss="modal" aria-label="Fermer">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <h6 class="text-primary">DÉTAILS PERSONNELS</h6>
+       <div class="container" >
+         <div class="row">
+           <div class="col-md-6">
+             <span>Telephone 1 - {{singleItem.telephone1}}</span>
+           </div>
+           <div class="col-md-6">
+            <span>Telephone 2  - {{singleItem.telephone2}}</span>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col-md-6">
+            <span>Age - {{singleItem.age}}</span>
+          </div> 
+          <div class="col-md-6">
+           <span>Date de naissance  - {{singleItem.datenais}}</span>
+         </div>
+        </div>
+       </div>
+       <h6 class="text-primary">DÉTAILS DES MEMBRES DE LA FAMILLE</h6>
+       <div class="container">
+         <div class="row">
+           <div class="col-md-6">
+             <span>Nombre d'enfant d'âge préscolaire - {{singleItem.nombre_d_enfant_d_age_prescolaire}}</span>
+           </div>
+           <div class="col-md-6">
+            <span>Le nombre d'enfants scolarisés - {{singleItem.nombre_d_enfants_scolarises}}</span>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col-md-4">
+            <span>Nombre de chômeurs - {{singleItem.nombre_de_chomeurs}}</span>
+          </div>
+          <div class="col-md-4">
+           <span>Le nombre de personnes handicapées ou atteintes d'une maladie chronique  - {{singleItem.nombre_de_personnes_atteintes}}</span>
+         </div>
+         <div class="col-md-4">
+          <span>Somme  - {{singleItem.somme}}</span>
+        </div>
+        </div>
+       </div>
+       <h6 class="text-primary">EXPENSE INFORMATION DÉTAILS</h6>
+       <div class="container">
+         <div class="row">
+           <div class="col-md-6">
+             <span>Frais de soin</span>
+             <input type="checkbox" disabled  [value]="singleItem.frais_de_soin" [checked]="singleItem.frais_de_soin">
+           </div>
+           <div class="col-md-6">
+            <span>Frais d'études</span>
+            <input type="checkbox" disabled [value]="singleItem.frais_d_etudes"  [checked]="singleItem.frais_d_etudes">
+          </div>
+         </div>
+         <div class="row">
+          <div class="col-md-4">
+            <span>Paiement de la consommation d'eau </span>
+            <input type="checkbox" disabled [value]="singleItem.paiement_de_la_consommation_d_eau" [checked]="singleItem.paiement_de_la_consommation_d_eau">
+          </div>
+          <div class="col-md-4">
+            <span>Paiement de la consommation d'électricité</span>
+            <input type="checkbox" disabled [value]="singleItem.paiement_de_la_consommation_d_electricite" [checked]="singleItem.paiement_de_la_consommation_d_electricite">
+         </div>
+         <div class="col-md-4">
+            <span>Payer les frais de loyer </span>
+            <input type="checkbox" disabled [value]="singleItem.payer_les_frais_de_loyer" [checked]="singleItem.payer_les_frais_de_loyer">
+        </div>
+        </div>
+       </div>
+       <div class="container">
+        <div class="row">
+         <h6 class="text-primary">ETAT CIVIL</h6>
+          <div class="col-md-4">
+            <label>ÉTAT CIVIL</label>
+             <p>{{singleItem.etatCivil}}</p>
+          </div>
+          <div class="col-md-4">
+            <label>ÉTAT DE SANTÉ</label>
+            <p>{{singleItem.etatDeSante}}</p>
+          </div>
+          <div class="col-md-4">
+            <label>PARENTS OU ASCENDANTS EN PARRAINAGE</label>
+            <p>{{singleItem.parents_ou_ascendants_en_parrainage}}</p>
+          </div>
+          <div class="col-md-4">
+            <label> REVENU CONTINENTAL </label>
+            <p>{{singleItem.revenuContinental}}</p>
+          </div>
+          <div class="col-md-4">
+            <label> COUVERTURE SOCIALE </label>
+            <p>{{singleItem.couvertureSociale}}</p>
+          </div>
+          <div  class="col-md-4">
+            <label> EXPLOITATION HABITATION  </label>
+            <p>{{singleItem.exploitationHabitation}}</p>
+          </div>
+          <div  class="col-md-4">
+            <label> ÉVALUATION DU COMITÉ </label>
+            <p>{{singleItem.evaluationDuComite}}</p>
+          </div>
+          <div *ngIf="singleItem.optionalValue" class="col-md-4">
+            <label> EXPLOITATION HABITATION OPTIONAL </label>
+            <p>{{singleItem.optionalValue}}</p>
+          </div>
+
+          <div *ngIf="singleItem.optionalValue2" class="col-md-4">
+            <label> ÉVALUATION DU COMITÉ OPTIONAL </label>
+            <p>{{singleItem.optionalValue2}}</p>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div style="display: none;" id="print">
+          <div>
+            <h1> {{singleItem.prenom | uppercase}} {{singleItem.nom | uppercase}}</h1>
+            <p style="font-size: 12px;">{{singleItem.num}} {{singleItem.cite | uppercase}}, {{singleItem.province | uppercase}}</p>
+          </div>
+          <h6 class="text-primary">DÉTAILS PERSONNELS</h6>
+       <div class="container" >
+         <div class="row">
+           <div class="col-md-6">
+             <span>Telephone 1 - {{singleItem.telephone1}}</span>
+           </div>
+           <div class="col-md-6">
+            <span>Telephone 2  - {{singleItem.telephone2}}</span>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col-md-6">
+            <span>Age - {{singleItem.age}}</span>
+          </div> 
+          <div class="col-md-6">
+           <span>Date de naissance  - {{singleItem.datenais}}</span>
+         </div>
+        </div>
+       </div>
+       <h6 class="text-primary">DÉTAILS DES MEMBRES DE LA FAMILLE</h6>
+       <div class="container">
+         <div class="row">
+           <div class="col-md-6">
+             <span>Nombre d'enfant d'âge préscolaire - {{singleItem.nombre_d_enfant_d_age_prescolaire}}</span>
+           </div>
+           <div class="col-md-6">
+            <span>Le nombre d'enfants scolarisés - {{singleItem.nombre_d_enfants_scolarises}}</span>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col-md-4">
+            <span>Nombre de chômeurs - {{singleItem.nombre_de_chomeurs}}</span>
+          </div>
+          <div class="col-md-4">
+           <span>Le nombre de personnes handicapées ou atteintes d'une maladie chronique  - {{singleItem.nombre_de_personnes_atteintes}}</span>
+         </div>
+         <div class="col-md-4">
+          <span>Somme  - {{singleItem.somme}}</span>
+        </div>
+        </div>
+       </div>
+       <h6 class="text-primary">EXPENSE INFORMATION DÉTAILS</h6>
+       <div class="container">
+         <div class="row">
+           <div class="col-md-6">
+             <span>Frais de soin</span>
+             <input type="checkbox" disabled  [value]="singleItem.frais_de_soin" [checked]="singleItem.frais_de_soin">
+           </div>
+           <div class="col-md-6">
+            <span>Frais d'études</span>
+            <input type="checkbox" disabled [value]="singleItem.frais_d_etudes"  [checked]="singleItem.frais_d_etudes">
+          </div>
+         </div>
+         <div class="row">
+          <div class="col-md-4">
+            <span>Paiement de la consommation d'eau </span>
+            <input type="checkbox" disabled [value]="singleItem.paiement_de_la_consommation_d_eau" [checked]="singleItem.paiement_de_la_consommation_d_eau">
+          </div>
+          <div class="col-md-4">
+            <span>Paiement de la consommation d'électricité</span>
+            <input type="checkbox" disabled [value]="singleItem.paiement_de_la_consommation_d_electricite" [checked]="singleItem.paiement_de_la_consommation_d_electricite">
+         </div>
+         <div class="col-md-4">
+            <span>Payer les frais de loyer </span>
+            <input type="checkbox" disabled [value]="singleItem.payer_les_frais_de_loyer" [checked]="singleItem.payer_les_frais_de_loyer">
+        </div>
+        </div>
+        <div class="container">
+          <div class="row">
+           <h6 class="text-primary">ETAT CIVIL</h6>
+            <div class="col-md-4">
+              <label>ÉTAT CIVIL</label>
+               <p>{{singleItem.etatCivil}}</p>
+            </div>
+            <div class="col-md-4">
+              <label>ÉTAT DE SANTÉ</label>
+              <p>{{singleItem.etatDeSante}}</p>
+            </div>
+            <div class="col-md-4">
+              <label>PARENTS OU ASCENDANTS EN PARRAINAGE</label>
+              <p>{{singleItem.parents_ou_ascendants_en_parrainage}}</p>
+            </div>
+            <div class="col-md-4">
+              <label> REVENU CONTINENTAL </label>
+              <p>{{singleItem.revenuContinental}}</p>
+            </div>
+            <div class="col-md-4">
+              <label> COUVERTURE SOCIALE </label>
+              <p>{{singleItem.couvertureSociale}}</p>
+            </div>
+            <div  class="col-md-4">
+              <label> EXPLOITATION HABITATION  </label>
+              <p>{{singleItem.exploitationHabitation}}</p>
+            </div>
+            <div  class="col-md-4">
+              <label> ÉVALUATION DU COMITÉ </label>
+              <p>{{singleItem.evaluationDuComite}}</p>
+            </div>
+            <div *ngIf="singleItem.optionalValue" class="col-md-4">
+              <label> EXPLOITATION HABITATION OPTIONAL </label>
+              <p>{{singleItem.optionalValue}}</p>
+            </div>
+
+            <div *ngIf="singleItem.optionalValue2" class="col-md-4">
+              <label> ÉVALUATION DU COMITÉ OPTIONAL </label>
+              <p>{{singleItem.optionalValue2}}</p>
+            </div>
+          </div>
+        </div>
+       </div>
+    
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+       <button type="button" printSectionId="print" ngxPrint class="btn btn-success" >Imprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">MODIFIER LE FORMULAIRE</h5>
+        <button type="button" class="fermer" data-dismiss="modal" aria-label="Fermer">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="updateFormValues">
+        <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"> اللقب</label>
+                    <input type="text" formControlName="nom" class="form-control" [value]="updateFormValues.nom"
+                      id="exampleFormControlInput1" placeholder="">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"> الإسم</label>
+                    <input type="text" autocomplete="off" formControlName="prenom" [value]="updateFormValues.prenom" class="form-control" id="exampleFormControlInput1"
+                      placeholder="">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"> عدد</label>
+                <input formControlName="num" type="number" [value]="updateFormValues.num" class="form-control" id="exampleFormControlInput1" placeholder="">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"> النهج</label>
+                <input type="text" formControlName="cite" [value]="updateFormValues.cite" class="form-control" id="exampleFormControlInput1" placeholder="">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"> الولاية</label>
+                <input type="text" formControlName="province" [value]="updateFormValues.province" class="form-control" id="exampleFormControlInput1" placeholder="">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"> رقم الهاتف 1</label>
+                <input type="tel" formControlName="telephone1"  [value]="updateFormValues.telephone1" class="form-control" id="exampleFormControlInput1" placeholder="">
+              </div>
+            </div>
+        
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"> رقم الهاتف 2 </label>
+                <input type="tel" formControlName="telephone2" [value]="updateFormValues.telephone2" class="form-control"  required="required">
+              </div>
+            </div>
+            </div>  <div class="col-md-12">
+              <div class="mb-3">
+                <label  for="exampleFormControlInput1" class="form-label" >: الحــــــــــــالة المدنية </label>
+                
+                <select size="1" required formControlName="etatCivil">
+                  <option value="celibataire"> أعزب/ عزباء </option>
+                  <option value="marie(e)"> متزوج(ة) </option>
+                  <option value="divorce(e)"> مطلق(ة)</option>
+                  <option value="veuf(ve)"> أرمل(ة) </option>
+              </select>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"> : الحــــــــــالة الصحية</label>
+                <select size="1" required formControlName="etatDeSante">
+                  <option value="sain"> سليم </option>
+                  <option value="handicape"> معاق </option>
+                  <option value="maladie_chronique"> له مرض مزمن </option>
+              </select>
+              </div>
+            </div>
+          </div>   
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"> عدد الأطفال دون سن الدراسة</label>
+                <input type="number" (keyup)="onChange()" formControlName=" nombre_d_enfant_d_age_prescolaire" [value]="updateFormValues. nombre_d_enfant_d_age_prescolaire" class="form-control" id="exampleFormControlInput1" placeholder="">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"> عدد الذين يزاولون الدراسة</label>
+                <input type="number" (keyup)="onChange()"  formControlName="nombre_d_enfants_scolarises" [value]="updateFormValues.nombre_d_enfants_scolarises" class="form-control" id="exampleFormControlInput1" placeholder="">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"> عدد العاطلين عن العمل </label>
+                <input type="number" (keyup)="onChange()" formControlName="nombre_de_chomeurs"  [value]="updateFormValues.nombre_de_chomeurs" class="form-control" id="exampleFormControlInput1" placeholder="">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"> عدد المعاقين أو الذين لديهم مرض مزمن </label>
+                <input type="number" (keyup)="onChange()" formControlName="nombre_de_personnes_atteintes" [value]="updateFormValues.nombre_de_personnes_atteintes" class="form-control" id="exampleFormControlInput1" placeholder="">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="mb-3">
+            <label  for="exampleFormControlInput1" class="form-label" >: الوالدين أو الاصول في الكفالة </label>
+            <select required size="1" formControlName="parents_ou_ascendants_en_parrainage">
+              <option value="la_mere_et_le pere"> الأب و الأم </option>
+              <option value="le_pere"> الأب </option>
+              <option value="la_mere"> الأم </option>
+              <option value="le_grand_pere"> الجد </option>
+              <option value="la_grande_mere"> الجدة </option>
+              <option value="grands-parents"> الجد و الجدة </option>
+              <option value="aucun_personne"> لا أحد </option>
+            </select>
+              </div>
+              </div>
+              <div class="col-md-12">
+                <div class="mb-3">
+              <label  for="exampleFormControlInput1" class="form-label" >:المداخيل القــــــارة </label>
+              <select required size="1" formControlName="revenuContinental">
+                <option value="salaire_mensuel"> راتب شهري </option>
+                <option value="CNSS"> جراية عمرية </option>
+                <option value="bourse"> منحة </option>
+                <option value="travailleur journalier "> عامل يومي </option>
+                <option value="revenu continental n'existe pas"> مداخيل قارة غير موجودة </option>
+            </select>
+                </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3">
+                <label  for="exampleFormControlInput1" class="form-label" >: التغطية االجتماعية </label>
+                <select #dropDown required size="1" formControlName="couvertureSociale">
+                  <option value="familles_beneficiant_des_bourses_permanentes_du_Programme_National_pour_les_Familles_Demunies"> الأسر المنتفعة بالمنح القارة للبرنامج الوطني لإعانة العائلات المعوزة
+                  </option>
+                  <option value="familles_qui_beneficient_de_cartes_de_soins_gratuites_sans_beneficier_de_bourses_permanentes"> الأسر المنتفعة ببطاقات العلاج المجاني دون التمتع بالمنح القارة </option>
+                 <option value="familles_beneficiant_de_cartes_de_traitement_à_tarif_reduit"> الأسر المنتفعة ببطاقات العلاج بالتعريفة المنخفضة </option>
+                  <option value="familles_sans_couverture_maladie"> الأسر التي لا تتمتع بأي تغطية صحية </option>
+                  <option value="boursiers_et_faibles_prestations_de_retraite"> أصحاب المنح و جرايات التقاعد الضعيفة</option>
+                  <option value="pas_de_couverture_sociale"> لا وجود لتغطية إجتماعية </option>
+              </select>
+                  </div>
+                  </div>
+          
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"> :تقييم اللجنة مع تصنيف الحالة</label>
+                <!-- <input required formControlName="optionalValue" type="text" value="تصنيف آخر تقرره اللجنة" *ngIf="show2"> -->
+                <select style="display:inline;" (change)="selectMe(values.value)" #values class="eval" size="1" name="1">
+                  <option value="priorite_absolue_et_suivi_continu"> ذات أولوية مطلقة و متابعة مستمرة </option>
+                  <option value="a_la_priorite"> ذات أولوية </option>
+                  <option value="intervention_sûre_dans_le_domaine_de_la_sante"> تدخل متأكد في مجال الصحي </option>
+                  <option value="intervention_sûre_dans_le_domaine_de_la_finance"> تدخل متأكد في مجال المالي </option>
+                  <option value="intervention_sûre_dans_le_domaine_de_l_administration"> تدخل متأكد في مجال الإداري </option>
+                  <option value="aide_limitee_aux_occasions_religieuses_et_sociales"> الإقتصار على المساعدات في المناسبات الدينية و الإجتماعية </option>
+                  <option value="un_autre_classement_decide_par_le_comite"> تصنيف آخر تقرره اللجنة </option>
+                </select>
+                <input type="text" formControlName="optionalValue2"  *ngIf="show">
+              </div>
+            </div>
+          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              <input type="submit" class="btn btn-primary" value="Sauvegarder les modifications">
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
