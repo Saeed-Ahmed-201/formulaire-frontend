@@ -152,6 +152,7 @@ onSubmit(){
   this.httpService.updateRecord(this.updateForm.value,this.formulaireId).subscribe((response:any) => {
   })
  }
+ 
  goBack(){
    this.location.back()
  }

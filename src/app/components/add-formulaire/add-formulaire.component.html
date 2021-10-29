@@ -36,7 +36,7 @@
                             <input type="date" class="form-control" formControlName="datenais">
 
                             <select formControlName="age" size="1" required>
-                          <option *ngFor="let in of demo; let i = index" value="{{i}}">
+                          <option *ngFor="let in of demo; let i = index" value="{{in}}">
                               {{in}}
                           </option>
                       </select> : السن
@@ -81,8 +81,8 @@
                 </tr>
                 <tr>
                     <td align="right">
-                        <select required formControlName="etatCivil">
-                      <option selected value="celibataire"> أعزب/ عزباء </option>
+                        <select  required size="1" formControlName="etatCivil">
+                      <option  value="celibataire"> أعزب/ عزباء </option>
                       <option value="marie(e)"> متزوج(ة) </option>
                       <option value="divorce(e)"> مطلق(ة)</option>
                       <option value="veuf(ve)"> أرمل(ة) </option>
@@ -90,10 +90,11 @@
                     <td align="center"> <b>: الحــــــــــــالة المدنية </b></td>
                 </tr>
                 <tr>
-                    <td align="right"> <select size="1" required formControlName="etatDeSante">
+                    <td align="right"> 
+                        <select size="1" required formControlName="etatDeSante">
                       <option selected value="sain"> سليم </option>
                       <option value="handicape"> معاق </option>
-                      <option value="maladie_chronique"> له مرض مزمن </option>
+                      <option value="maladie chronique"> له مرض مزمن </option>
                   </select>
                     </td>
                     <td align="center"> <b> : الحــــــــــالة الصحية </b></td>
@@ -122,13 +123,13 @@
                 <tr>
                     <td align="right">
                         <select required size="1" formControlName="parents_ou_ascendants_en_parrainage">
-                      <option selected value="la_mere_et_le pere"> الأب و الأم </option>
-                      <option value="le_pere"> الأب </option>
-                      <option value="la_mere"> الأم </option>
-                      <option value="le_grand_pere"> الجد </option>
-                      <option value="la_grande_mere"> الجدة </option>
-                      <option value="grands-parents"> الجد و الجدة </option>
-                      <option value="aucun_personne"> لا أحد </option>
+                      <option selected value="la mere et le pere"> الأب و الأم </option>
+                        <option value="le père"> الأب </option>
+                        <option value="la mère"> الأم </option>
+                        <option value="Grand-père"> الجد </option>
+                        <option value="grand-mère"> الجدة </option>
+                        <option value="grandsparents"> الجد و الجدة </option>
+                        <option value="Personne"> لا أحد </option>
                   </select>
                     </td>
                     <td align="center"> <b>: الوالدين أو الاصول في الكفالة</b></td>
@@ -149,13 +150,13 @@
                 <tr>
                     <td align="right">
                         <select #dropDown required size="1" formControlName="couvertureSociale">
-                      <option selected value="familles_beneficiant_des_bourses_permanentes_du_Programme_National_pour_les_Familles_Demunies"> الأسر المنتفعة بالمنح القارة للبرنامج الوطني لإعانة العائلات المعوزة
+                      <option selected value="familles beneficiant des bourses permanentes du Programme National pour les Familles Demunies"> الأسر المنتفعة بالمنح القارة للبرنامج الوطني لإعانة العائلات المعوزة
                       </option>
-                      <option value="familles_qui_beneficient_de_cartes_de_soins_gratuites_sans_beneficier_de_bourses_permanentes"> الأسر المنتفعة ببطاقات العلاج المجاني دون التمتع بالمنح القارة </option>
-                     <option value="familles_beneficiant_de_cartes_de_traitement_à_tarif_reduit"> الأسر المنتفعة ببطاقات العلاج بالتعريفة المنخفضة </option>
-                      <option value="familles_sans_couverture_maladie"> الأسر التي لا تتمتع بأي تغطية صحية </option>
-                      <option value="boursiers_et_faibles_prestations_de_retraite"> أصحاب المنح و جرايات التقاعد الضعيفة</option>
-                      <option value="pas_de_couverture_sociale"> لا وجود لتغطية إجتماعية </option>
+                      <option value="familles qui beneficient de cartes de soins gratuites sans beneficier de bourses permanentes"> الأسر المنتفعة ببطاقات العلاج المجاني دون التمتع بالمنح القارة </option>
+                     <option value="familles beneficiant de cartes de traitement à tarif reduit"> الأسر المنتفعة ببطاقات العلاج بالتعريفة المنخفضة </option>
+                      <option value="familles sans couverture maladie"> الأسر التي لا تتمتع بأي تغطية صحية </option>
+                      <option value="boursiers et faibles prestations de retraite"> أصحاب المنح و جرايات التقاعد الضعيفة</option>
+                      <option value="pas de couverture sociale"> لا وجود لتغطية إجتماعية </option>
                   </select>
 
                     </td>
@@ -191,13 +192,13 @@
                         </p>
                         <!-- <input required formControlName="optionalValue" type="text" value="تصنيف آخر تقرره اللجنة" *ngIf="show2"> -->
                         <select style="display:inline;" formControlName="evaluationDuComite" (change)="selectOne(values.value)" #values class="eval" size="1" name="1">
-                      <option selected value="priorite_absolue_et_suivi_continu"> ذات أولوية مطلقة و متابعة مستمرة </option>
-                      <option value="a_la_priorite"> ذات أولوية </option>
-                      <option value="intervention_sure_dans_le_domaine_de_la_sante"> تدخل متأكد في مجال الصحي </option>
-                      <option value="intervention_sure_dans_le_domaine_de_la_finance"> تدخل متأكد في مجال المالي </option>
-                      <option value="intervention_sure_dans_le_domaine_de_l_administration"> تدخل متأكد في مجال الإداري </option>
-                      <option value="aide_limitee_aux_occasions_religieuses_et_sociales"> الإقتصار على المساعدات في المناسبات الدينية و الإجتماعية </option>
-                      <option value="un_autre_classement_decide_par_le_comite"> تصنيف آخر تقرره اللجنة </option>
+                      <option selected value="priorite absolue et suivi continu"> ذات أولوية مطلقة و متابعة مستمرة </option>
+                      <option value="a la priorite"> ذات أولوية </option>
+                      <option value="intervention sure dans le domaine de la sante"> تدخل متأكد في مجال الصحي </option>
+                      <option value="intervention sure dans le domaine de la finance"> تدخل متأكد في مجال المالي </option>
+                      <option value="intervention sure dans le domaine de l administration"> تدخل متأكد في مجال الإداري </option>
+                      <option value="aide limitee aux occasions religieuses et sociales"> الإقتصار على المساعدات في المناسبات الدينية و الإجتماعية </option>
+                      <option value="un autre classement decide par le comite"> تصنيف آخر تقرره اللجنة </option>
                   </select>
                         <input type="text" formControlName="optionalValue2" *ngIf="show2">
                     </div>

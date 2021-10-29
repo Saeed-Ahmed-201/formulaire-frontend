@@ -7,17 +7,27 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Adresse mail</label>
                     <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter I'adresse mail">
+                    <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)" class="alert alert-danger">
+                        <div *ngIf="loginForm.controls['email'].errors.required">
+                            L'e-mail est requis.
+                      </div>
+                  </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Mot De Passe</label>
                     <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1" placeholder="Enter votre mot de passe">
+                    <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="alert alert-danger">
+                        <div *ngIf="loginForm.controls['password'].errors.required">
+                            L'e-mail est requis.
+                      </div>
+                  </div>
                 </div>
                 <div>
                     Vous pouvez creer un nouveau compte
                     <a routerLink="/authentication/signup"> Creer un compte</a>
                 </div>
                 <div class="col-md-4 m-2 mx-auto">
-                    <button type="submit" class="btn btn-primary">Se Connecter</button>
+                    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Se Connecter</button>
                 </div>
             </form>
         </div>

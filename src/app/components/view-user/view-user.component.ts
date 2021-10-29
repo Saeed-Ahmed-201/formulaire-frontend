@@ -21,7 +21,6 @@ export class ViewUserComponent implements OnInit {
 
   retrieveUser(userId: any){
       this.httpService.retrieveSingleFormula(userId).subscribe(data => {
-        console.log("Data of ",data)
         if(data.status == 200){
           console.log(data)
           this.singleItemView = data.result;

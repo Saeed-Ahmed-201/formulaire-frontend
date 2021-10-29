@@ -5,7 +5,7 @@
                 <h6>
                     {{singleItemView.prenom | uppercase}} {{singleItemView.nom | uppercase}}
                 </h6>
-                <p style="font-size: 12px;">{{singleItemView.nom}} {{singleItemView.cite | uppercase}}, {{singleItemView.province | uppercase}}</p>
+                <p style="font-size: 12px;"> {{singleItemView.cite | uppercase}}, {{singleItemView.province | uppercase}}</p>
             </div>
         </div>
         <div class="col-md-12 p-3">
@@ -58,25 +58,25 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="checkbox" disabled [value]="singleItemView.frais_de_soin" [checked]="singleItemView.frais_de_soin">
+                        <input type="checkbox" disabled  [checked]="singleItemView.frais_de_soin == 'true'">
                         <span>Frais de soin</span>
                     </div>
                     <div class="col-md-6">
-                        <input type="checkbox" disabled [value]="singleItemView.frais_d_etudes" [checked]="singleItemView.frais_d_etudes">
+                        <input type="checkbox" disabled  [checked]="singleItemView.frais_d_etudes == 'true'">
                         <span>Frais d'études</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="checkbox" disabled [value]="singleItemView.paiement_de_la_consommation_d_eau" [checked]="singleItemView.paiement_de_la_consommation_d_eau">
+                        <input type="checkbox" disabled  [checked]="singleItemView.paiement_de_la_consommation_d_eau == 'true'">
                         <span>Paiement de la consommation d'eau </span>
                     </div>
                     <div class="col-md-6">
-                        <input type="checkbox" disabled [value]="singleItemView.paiement_de_la_consommation_d_electricite" [checked]="singleItemView.paiement_de_la_consommation_d_electricite">
+                        <input type="checkbox" disabled  [checked]="singleItemView.paiement_de_la_consommation_d_electricite == 'true'">
                         <span>Paiement de la consommation d'électricité </span>
                     </div>
                     <div class="col-md-4">
-                        <input type="checkbox" disabled [value]="singleItemView.payer_les_frais_de_loyer" [checked]="singleItemView.payer_les_frais_de_loyer">
+                        <input type="checkbox" disabled  [checked]="singleItemView.payer_les_frais_de_loyer == 'true'">
                         <span>Payer les frais de loyer </span>
                     </div>
                 </div>

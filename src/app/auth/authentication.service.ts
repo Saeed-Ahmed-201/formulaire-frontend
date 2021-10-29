@@ -26,14 +26,15 @@ export class AuthenticationService {
 
       login(email:string, password:string){
           return this.http.post(`${this.baseUrl}/signin`,{email, password}).pipe(map((data:any) => {
-            console.log(data);
                   localStorage.setItem("userInfo", JSON.stringify(data.result));
                   localStorage.setItem("token", JSON.stringify(data.result.token));
 
                   this.currentUser.next(data.result);
                   this.isFormulareAdded.next(data.result.filledFormulaire);
+                  localStorage.setItem('currentUserName', JSON.stringify(data.result.userFullName))
                   localStorage.removeItem('hasFormulaired');
                   localStorage.setItem('hasFormulaired', JSON.stringify(data.result.filledFormulaire));
+                  this.sharedService.isUserLoggedIn.next(true);
                   return data;
           }));
       }
@@ -66,6 +67,7 @@ export class AuthenticationService {
         localStorage.removeItem('token');
         localStorage.removeItem('userInfo');
         localStorage.removeItem('hasFormulaired');
+        localStorage.removeItem('currentUserName')
         this.currentUser.next(null);
         this.isFormulareAdded.next(null);
         this.router.navigate(['authentication/login']);

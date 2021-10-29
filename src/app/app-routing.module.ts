@@ -1,8 +1,6 @@
 import { Role } from './model/role';
 import { NgModule } from '@angular/core';
 import {RouterModule , Routes } from '@angular/router';
-import { FormulaireListComponent } from './formulaire-list/formulaire-list.component';
-import { FormulaireComponent } from './formulaire/formulaire.component';
 import { AuthGuard } from './core/auth.guard';
 import { RoleguardGuard } from './core/roleguard.guard';
 
